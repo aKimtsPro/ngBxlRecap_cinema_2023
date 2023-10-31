@@ -15,7 +15,16 @@ export class HeaderComponent {
     },
     {
       label: 'movies',
-      routerLink: 'movie'
+      items: [
+        {
+          label: 'list',
+          routerLink: 'movie'
+        },
+        {
+          label: 'add',
+          routerLink: 'movie/add'
+        },
+      ]
     },
   ]
 }

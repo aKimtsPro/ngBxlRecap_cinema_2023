@@ -18,7 +18,7 @@
         <td>salle {{session.room.number}}</td>
         <td appAvailable [placeLeft]="calculatePlaceLeft(session)">{{ session | available }}</td>
         <td>
-          <p-button (click)="unreserve(session.id)" *ngIf="session.reserved; else reserveBtn"></p-button>
+          <p-button (click)="unreserve(session.id)" *ngIf="session.reserved; else reserveBtn">unreserve</p-button>
           <ng-template #reserveBtn>
             <p-button (click)="reserve(session.id)">resever</p-button>
           </ng-template>

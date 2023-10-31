@@ -1,0 +1,37 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label>id</label>
+    <input type="number" formControlName="id">
+    <p class="error" *ngIf="form.controls['id'].errors?.['min']">The ID must be positive</p>
+    <p class="error" *ngIf="form.controls['id'].errors?.['required']">The ID is required</p>
+  </div>
+  <div>
+    <label>name</label>
+    <input type="text" formControlName="name">
+  </div>
+  <div>
+    <label>director</label>
+    <input type="text" formControlName="director">
+  </div>
+  <div>
+
+    <p-button (click)="ajouterGenre()">ajouter un genre</p-button>
+
+    <div>
+      <input type="text" *ngFor="let control of arrayControls" [formControl]="control">
+    </div>
+
+  </div>
+  <div>
+    <label>duration</label>
+    <input type="number" formControlName="duration">
+  </div>
+  <div>
+    <label>image url</label>
+    <input type="text" formControlName="img">
+  </div>
+
+  <p-button type="submit">create movie</p-button>
+
+</form>

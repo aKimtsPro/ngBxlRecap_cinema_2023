@@ -16,6 +16,8 @@ import {MenubarModule} from "primeng/menubar";
 import {TableModule} from "primeng/table";
 import { AvailablePipe } from './pipes/available.pipe';
 import { AvailableDirective } from './directives/available.directive';
+import { AddMovieComponent } from './components/add-movie/add-movie.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { AvailableDirective } from './directives/available.directive';
     HomeComponent,
     Page404Component,
     AvailablePipe,
-    AvailableDirective
+    AvailableDirective,
+    AddMovieComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { AvailableDirective } from './directives/available.directive';
     CardModule,
     ButtonModule,
     MenubarModule,
-    TableModule
+    TableModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

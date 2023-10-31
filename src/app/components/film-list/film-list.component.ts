@@ -15,6 +15,7 @@ export class FilmListComponent {
     private readonly $movieServ: FilmService
   ) {
     this.movies = $movieServ.getAll();
+    console.log(this.movies)
   }
 
 }

@@ -54,4 +54,8 @@ export class FilmService {
   getAll(){
     return [...this._movies];
   }
+
+  add(movie: Movie) {
+    this._movies.push(movie);
+  }
 }
