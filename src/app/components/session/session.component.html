@@ -1,0 +1,29 @@
+<h2>Sessions: </h2>
+
+<div class="films-container">
+  <p-table [value]="sessions">
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th>time</th>
+        <th>room</th>
+        <th>availability</th>
+        <th>reserve</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-session>
+      <tr>
+        <td>{{session.startAt | date:'dd/MM/yy HH:mm'}}</td>
+        <td>salle {{session.room.number}}</td>
+        <td appAvailable [placeLeft]="calculatePlaceLeft(session)">{{ session | available }}</td>
+        <td>
+          <p-button (click)="unreserve(session.id)" *ngIf="session.reserved; else reserveBtn"></p-button>
+          <ng-template #reserveBtn>
+            <p-button (click)="reserve(session.id)">resever</p-button>
+          </ng-template>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

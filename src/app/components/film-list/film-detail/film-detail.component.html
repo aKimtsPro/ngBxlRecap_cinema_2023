@@ -1,0 +1,41 @@
+<p-card styleClass="mb-3">
+
+  <ng-template pTemplate="header">
+    <h2>{{movie.name}}</h2>
+  </ng-template>
+
+  <div class="flex">
+
+    <div class="col-2 poster-holder">
+      <img [src]="movie.img" alt="{{movie.name}} poster">
+    </div>
+
+    <div class="col-10 flex flex-column justify-content-between">
+      <div class="movie-direction">
+        <div>
+          <div><span class="movie-info-title"> name: </span> {{ movie.name }} </div>
+        </div>
+        <div>
+          <div><span class="movie-info-title"> director: </span> {{ movie.director }} </div>
+        </div>
+        <div>
+          <div>
+            <span class="movie-info-title"> genres: </span>
+            <span *ngFor="let genre of movie.genres; let last = last">
+              {{genre}}{{!last ? ',' : ''}}
+            </span>
+          </div>
+        </div>
+        <div>
+          <div><span class="movie-info-title"> duration: </span> {{movie.duration}} min. </div>
+        </div>
+      </div>
+
+      <div class="movie-actions flex justify-content-end">
+        <p-button routerLink="/movie/{{movie.id}}/session"> sessions </p-button>
+      </div>
+    </div>
+
+  </div>
+
+</p-card>
