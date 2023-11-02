@@ -2,6 +2,16 @@
 
   <ng-template pTemplate="end">
 
+    <ng-container>
+      <ng-container *ngIf="userName$ | async as userName; else notConnected">
+        <p *ngIf="showMessage">Bonjour {{userName}}</p>
+      </ng-container>
+
+      <ng-template #notConnected>
+        <p *ngIf="showMessage">A bientot!</p>
+      </ng-template>
+    </ng-container>
+
     <p-button *ngIf="isConnected; else connect" (click)="disconnect()">disconnect</p-button>
     <ng-template #connect>
       <p-button routerLink="/login">connect</p-button>

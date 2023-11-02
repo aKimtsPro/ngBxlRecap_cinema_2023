@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {MenuItem} from "primeng/api";
 import {AuthService} from "../../services/auth.service";
+import {interval, Observable, tap} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -33,7 +34,28 @@ export class HeaderComponent {
     }
   ]
 
+  showMessage = false;
+  // userName: string | null = null;
+  userName$: Observable<string | null>;
+
+
   constructor(private readonly $authSev: AuthService) {
+    this.userName$ = this.$authSev.connectedUser$.pipe(
+      tap({
+        next: userName => {
+          this.showMessage = true;
+          console.log(userName)
+          setTimeout(() => this.showMessage = false, 5_000);
+        }
+      })
+    );
+    // $authSev.connectedUser$.subscribe({
+    //   next: (username) => {
+    //     this.userName = username;
+    //     this.showMessage = true;
+    //     setTimeout( () => this.showMessage = false, 5_000 )
+    //   }
+    // })
   }
 
   get isConnected(){

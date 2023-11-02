@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {BehaviorSubject, Observable, tap} from "rxjs";
 
 const AUTH_KEY = 'connectedUser';
 
@@ -12,19 +13,24 @@ export class AuthService {
     password: 'pass'
   }
 
-  constructor() { }
+  private _connectedUser$ = new BehaviorSubject<string | null>( this.connectedUser );
+
+  constructor() {}
 
   connect(username: string, password: string): boolean{
     if( !this.isConnected && this.user.username == username && this.user.password == password ){
       this.connectedUser = this.user.username;
+      this._connectedUser$.next( this.connectedUser );
       return true;
     }
     return false;
   }
 
   disconnect(){
-    if( this.isConnected )
+    if( this.isConnected ) {
       this.connectedUser = null;
+      this._connectedUser$.next( this.connectedUser );
+    }
   }
 
   get isConnected(): boolean {
@@ -42,6 +48,12 @@ export class AuthService {
       localStorage.setItem(AUTH_KEY, user);
     else
       localStorage.removeItem(AUTH_KEY);
+  }
+
+  get connectedUser$(): Observable<string | null>{
+    return this._connectedUser$.pipe(
+      tap(console.log)
+    );
   }
 
 }
