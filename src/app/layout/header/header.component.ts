@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {MenuItem} from "primeng/api";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -22,9 +23,24 @@ export class HeaderComponent {
         },
         {
           label: 'add',
-          routerLink: 'movie/add'
+          routerLink: 'movie/add',
         },
       ]
     },
+    {
+      label: 'login',
+      routerLink: 'login'
+    }
   ]
+
+  constructor(private readonly $authSev: AuthService) {
+  }
+
+  get isConnected(){
+    return this.$authSev.isConnected
+  }
+
+  disconnect() {
+    this.$authSev.disconnect()
+  }
 }

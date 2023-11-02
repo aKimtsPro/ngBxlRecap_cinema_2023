@@ -1,1 +1,12 @@
-<p-menubar [model]="links" ></p-menubar>
+<p-menubar [model]="links" >
+
+  <ng-template pTemplate="end">
+
+    <p-button *ngIf="isConnected; else connect" (click)="disconnect()">disconnect</p-button>
+    <ng-template #connect>
+      <p-button routerLink="/login">connect</p-button>
+    </ng-template>
+
+  </ng-template>
+
+</p-menubar>

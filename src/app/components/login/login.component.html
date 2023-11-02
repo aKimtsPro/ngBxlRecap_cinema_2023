@@ -1,0 +1,19 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div *ngIf="invalidCreds">
+    <p>invalid credentials</p>
+  </div>
+
+  <div>
+    <label>username</label><br>
+    <input type="text" formControlName="username">
+  </div>
+
+  <div>
+    <label>password</label><br>
+    <input type="text" formControlName="password">
+  </div>
+
+  <button type="submit">connect</button>
+
+</form>

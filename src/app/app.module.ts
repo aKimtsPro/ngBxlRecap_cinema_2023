@@ -18,6 +18,7 @@ import { AvailablePipe } from './pipes/available.pipe';
 import { AvailableDirective } from './directives/available.directive';
 import { AddMovieComponent } from './components/add-movie/add-movie.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     Page404Component,
     AvailablePipe,
     AvailableDirective,
-    AddMovieComponent
+    AddMovieComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
