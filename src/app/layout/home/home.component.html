@@ -1,1 +1,4 @@
-<p>home works!</p>
+
+<div *ngIf="flights$ | async as flights">
+  <p *ngFor="let flight of flights">{{flight | json}}</p>
+</div>

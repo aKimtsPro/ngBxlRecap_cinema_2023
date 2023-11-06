@@ -1,5 +1,7 @@
 import {Component, OnDestroy} from '@angular/core';
-import {interval, Subscription} from "rxjs";
+import {EMPTY, interval, Observable, Subscription} from "rxjs";
+import {FlightService} from "../../services/flight.service";
+import {Flight} from "../../shared/models/flight.model";
 
 @Component({
   selector: 'app-home',
@@ -7,11 +9,15 @@ import {interval, Subscription} from "rxjs";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnDestroy {
-  demoObs$ = interval(1000);
+  demoObs$ = EMPTY//interval(1000);
   demoObs$$: Subscription;
+  flights$: Observable<Flight[]>
 
-  constructor() {
+  constructor(
+    private readonly $flightServ: FlightService
+  ) {
     this.demoObs$$ = this.demoObs$.subscribe((data) => console.log(data));
+    this.flights$ = this.$flightServ.getNewPlanes();
   }
 
   ngOnDestroy(): void {

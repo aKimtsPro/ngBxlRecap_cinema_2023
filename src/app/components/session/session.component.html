@@ -1,7 +1,7 @@
 <h2>Sessions: </h2>
 
 <div class="films-container">
-  <p-table [value]="sessions">
+  <p-table *ngIf="sessions$ | async as sessions; else loading" [value]="sessions">
 
     <ng-template pTemplate="header">
       <tr>
@@ -27,3 +27,7 @@
     </ng-template>
   </p-table>
 </div>
+
+<ng-template #loading>
+  <p>loading...</p>
+</ng-template>

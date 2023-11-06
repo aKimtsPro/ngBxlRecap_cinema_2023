@@ -1,7 +1,11 @@
 <h2>Films à l'affiche: </h2>
 
-<div class="films-container">
+<div class="films-container" *ngIf="movies$ | async as movies; else loading">
   <ng-container *ngFor="let movie of movies">
     <app-film-detail [movie]="movie" ></app-film-detail>
   </ng-container>
 </div>
+
+<ng-template #loading>
+  <p>loading...</p>
+</ng-template>

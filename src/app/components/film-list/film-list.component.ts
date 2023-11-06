@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Movie} from "../../shared/models/movie.model";
 import {FilmService} from "../../services/film.service";
+import {delay, elementAt, filter, map, Observable, tap} from "rxjs";
 
 @Component({
   selector: 'app-film-list',
@@ -9,13 +10,15 @@ import {FilmService} from "../../services/film.service";
 })
 export class FilmListComponent {
 
-  movies: Movie[]
+  movies$: Observable<Movie[]>
 
   constructor(
     private readonly $movieServ: FilmService
   ) {
-    this.movies = $movieServ.getAll();
-    console.log(this.movies)
+    // this.$movieServ.getAll().pipe(
+    //   delay(1_000)
+    // ).subscribe(data => this.movies = data)
+    this.movies$ = this.$movieServ.getAll().pipe(delay(1_000));
   }
 
 }

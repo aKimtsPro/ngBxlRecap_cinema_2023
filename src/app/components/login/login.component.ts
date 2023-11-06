@@ -24,14 +24,13 @@ export class LoginComponent {
 
   onSubmit() {
     if( this.form.valid ){
-      const success = this.$authServ.connect( this.form.value.username, this.form.value.password );
-      if( success ){
-        this.router.navigateByUrl('/home')
-      }
-      else {
-        this.invalidCreds = true;
-        this.form.reset();
-      }
+      this.$authServ.connect( this.form.value.username, this.form.value.password ).subscribe({
+        next: () => this.router.navigateByUrl('/home'),
+        error: () => {
+          this.invalidCreds = true;
+          this.form.reset();
+        }
+      })
     }
   }
 }

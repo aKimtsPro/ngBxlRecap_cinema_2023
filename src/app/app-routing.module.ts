@@ -7,6 +7,7 @@ import {Page404Component} from "./layout/page404/page404.component";
 import {AddMovieComponent} from "./components/add-movie/add-movie.component";
 import {LoginComponent} from "./components/login/login.component";
 import {AuthGuard} from "./guards/connected.guard";
+import {SessionResolver} from "./core/resolver.resolver";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch:'full' },
@@ -17,7 +18,7 @@ const routes: Routes = [
     children: [
       { path: '', component: FilmListComponent },
       { path: 'add', component: AddMovieComponent, canActivate: [AuthGuard(true)] },
-      { path: ':id/session', component: SessionComponent },
+      { path: ':id/session', component: SessionComponent, resolve: { session: SessionResolver } },
     ]
   },
   { path: '404', component: Page404Component },

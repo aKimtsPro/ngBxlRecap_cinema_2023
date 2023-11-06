@@ -40,7 +40,7 @@ export class HeaderComponent {
 
 
   constructor(private readonly $authSev: AuthService) {
-    this.userName$ = this.$authSev.connectedUser$.pipe(
+    this.userName$ = this.$authSev.username$.pipe(
       tap({
         next: userName => {
           this.showMessage = true;
